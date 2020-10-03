@@ -2,7 +2,9 @@ defmodule SocketServerWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", SocketServerWeb.RoomChannel
+  channel "room:*", SocketServerWeb.RoomChannel
+
+  @max_age 2 * 7 * 24 * 60 * 60
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -17,6 +19,12 @@ defmodule SocketServerWeb.UserSocket do
   # performing token verification on connect.
   @impl true
   def connect(_params, socket, _connect_info) do
+    case Phoenix.Token.verify(socket, "user socket", token, max_age: @max_age) do
+      {:ok, user_id} ->
+        {:ok, assign(socket, :user_id, user_id)}
+      {:error, _reason} ->
+        :error
+    end
     {:ok, socket}
   end
 
@@ -31,5 +39,5 @@ defmodule SocketServerWeb.UserSocket do
   #
   # Returning `nil` makes this socket anonymous.
   @impl true
-  def id(_socket), do: nil
+  def id(socket), do: "user_socket:#{socket.assigns.user_id}"
 end
