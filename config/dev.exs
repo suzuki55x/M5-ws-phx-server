@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :socket_server, SocketServer.Repo,
-  username: "user_test",
-  password: "pass_test",
+  username: "root",
+  password: "password",
   database: "socket_server_dev",
   hostname: "127.0.0.1",
   show_sensitive_data_on_connection_error: true,
