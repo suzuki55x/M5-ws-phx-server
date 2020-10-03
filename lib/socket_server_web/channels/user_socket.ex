@@ -4,7 +4,7 @@ defmodule SocketServerWeb.UserSocket do
   ## Channels
   channel "room:*", SocketServerWeb.RoomChannel
 
-  @max_age 2 * 7 * 24 * 60 * 60
+#  @max_age 2 * 7 * 24 * 60 * 60
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -39,5 +39,6 @@ defmodule SocketServerWeb.UserSocket do
   #
   # Returning `nil` makes this socket anonymous.
   @impl true
-  def id(socket), do: "user_socket:#{socket.assigns.user_id}"
+  #def id(socket), do: "user_socket:#{socket.assigns.user_id}"
+  def id(_socket), do: nil
 end

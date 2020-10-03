@@ -1,6 +1,7 @@
 defmodule SocketServerWeb.RoomChannel do
+  use Phoenix.Channel
 
-  def join("room:" <> user_id, msg, socket) do
+  def join("room:" <> _room_id, _msg, socket) do
     {:ok, socket}
   end
 
