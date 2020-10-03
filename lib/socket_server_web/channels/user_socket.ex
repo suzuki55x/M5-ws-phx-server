@@ -19,12 +19,12 @@ defmodule SocketServerWeb.UserSocket do
   # performing token verification on connect.
   @impl true
   def connect(_params, socket, _connect_info) do
-    case Phoenix.Token.verify(socket, "user socket", token, max_age: @max_age) do
-      {:ok, user_id} ->
-        {:ok, assign(socket, :user_id, user_id)}
-      {:error, _reason} ->
-        :error
-    end
+#    case Phoenix.Token.verify(socket, "user socket", token, max_age: @max_age) do
+#      {:ok, user_id} ->
+#        {:ok, assign(socket, :user_id, user_id)}
+#      {:error, _reason} ->
+#        :error
+#    end
     {:ok, socket}
   end
 
