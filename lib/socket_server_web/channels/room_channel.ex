@@ -7,7 +7,7 @@ defmodule SocketServerWeb.RoomChannel do
 
   # chime
   def handle_in("call", params, socket) do
-    broadcast! socket, "call", %{body: params["body"]}
+    broadcast_from! socket, "call", %{body: params["body"]}
     {:noreply, socket}
   end
 end
